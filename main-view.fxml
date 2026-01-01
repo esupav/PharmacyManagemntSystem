@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.pharmacymanagementsystem.MainController"
+            prefHeight="800.0" prefWidth="1280.0"
+            stylesheets="@styles.css">
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox style="-fx-background-color: #2c3e50;" spacing="10" prefWidth="220">
+            <padding><Insets top="20" bottom="20"/></padding>
+            <Label text="Selam Pharmacy" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white; -fx-padding: 0 0 20 20;" wrapText="true"/>
+
+            <VBox fx:id="menuContainer" VBox.vgrow="ALWAYS"/>
+
+            <Button fx:id="logoutButton" text="Logout" onAction="#onLogout" styleClass="button-danger" maxWidth="Infinity" style="-fx-background-radius: 0;"/>
+        </VBox>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <VBox style="-fx-background-color: #f4f7fa;">
+            <!-- Top Bar -->
+            <HBox alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-padding: 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 5);">
+                <Label fx:id="viewTitleLabel" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <VBox alignment="CENTER_RIGHT">
+                    <Label fx:id="usernameLabel" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="roleLabel" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+                </VBox>
+            </HBox>
+
+            <!-- Content Pane -->
+            <BorderPane fx:id="contentPane" VBox.vgrow="ALWAYS">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+            </BorderPane>
+        </VBox>
+    </center>
+
+</BorderPane>
