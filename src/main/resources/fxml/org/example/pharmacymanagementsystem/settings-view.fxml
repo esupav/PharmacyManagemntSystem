@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+
+<VBox spacing="20" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.pharmacymanagementsystem.SettingsController" style="-fx-padding: 20;">
+    <Label text="System Settings" styleClass="header-title"/>
+
+    <VBox styleClass="card" spacing="15">
+        <Label text="General Settings" styleClass="section-title"/>
+        <GridPane styleClass="form-grid">
+            <Label text="Tax Rate (%):" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="taxRateField" promptText="e.g., 15" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Low Stock Threshold:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="lowStockThresholdField" promptText="e.g., 10" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Expiry Alert Period (Months):" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="expiryAlertPeriodField" promptText="e.g., 3" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        </GridPane>
+        <Button text="Save Settings" onAction="#saveSettings" styleClass="button-success"/>
+        <Label fx:id="settingsMessageLabel" styleClass="error-label" managed="false" visible="false"/>
+    </VBox>
+</VBox>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+
+<VBox spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.pharmacymanagementsystem.InventoryController"
+      stylesheets="@styles.css">
+    <padding>
+        <Insets top="10"/>
+    </padding>
+
+    <!-- Add/Edit Medicine Form Card -->
+    <VBox styleClass="card" spacing="15">
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Manage Medicine Details" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Clear Form" onAction="#onClearForm" styleClass="button-secondary"/>
+        </HBox>
+
+        <HBox spacing="15">
+            <TextField fx:id="nameField" promptText="Name" HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="companyField" promptText="Company" HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="batchField" promptText="Batch No."/>
+        </HBox>
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <TextField fx:id="qtyField" promptText="Qty" prefWidth="80"/>
+            <TextField fx:id="priceField" promptText="Price (ETB)" prefWidth="100"/>
+            <TextField fx:id="expiryField" promptText="Expiry (YYYY-MM-DD)" prefWidth="160"/>
+            <CheckBox fx:id="prescriptionCheck" text="Requires Prescription"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="10">
+                <Button text="Add New" onAction="#onAdd" styleClass="button-success"/>
+                <Button text="Update Selected" onAction="#onUpdate"/>
+                <Button text="Delete Selected" onAction="#onDelete" styleClass="button-danger"/>
+            </HBox>
+        </HBox>
+    </VBox>
+
+    <!-- Search and Table -->
+    <VBox spacing="15" VBox.vgrow="ALWAYS">
+        <TextField fx:id="searchField" promptText="Search by Name or Company..."/>
+        <TableView fx:id="medicineTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="idCol" text="ID"/>
+                <TableColumn fx:id="nameCol" text="Name"/>
+                <TableColumn fx:id="companyCol" text="Company"/>
+                <TableColumn fx:id="batchCol" text="Batch No."/>
+                <TableColumn fx:id="qtyCol" text="Qty"/>
+                <TableColumn fx:id="priceCol" text="Price (ETB)"/>
+                <TableColumn fx:id="expiryCol" text="Expiry"/>
+                <TableColumn fx:id="rxCol" text="Rx"/>
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>

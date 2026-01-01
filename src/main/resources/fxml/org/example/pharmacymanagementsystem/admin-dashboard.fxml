@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+
+<VBox spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.pharmacymanagementsystem.AdminController"
+      stylesheets="@styles.css" styleClass="root">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" styleClass="header-bar">
+        <VBox>
+            <Label text="Administrator Dashboard" styleClass="header-title"/>
+            <Label text="System Overview &amp; Management" styleClass="sub-header-title"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <VBox alignment="CENTER_RIGHT">
+            <Label fx:id="userLabel" style="-fx-font-weight: bold; -fx-text-fill: #3498db;"/>
+        </VBox>
+        <Button text="Logout" onAction="#onLogoutClick" styleClass="button-danger" style="-fx-margin-left: 20;"/>
+    </HBox>
+
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <tabs>
+            <!-- Dashboard & Analytics Tab -->
+            <Tab text="Dashboard &amp; Analytics">
+                <VBox spacing="20" style="-fx-padding: 20;">
+                    <!-- Dashboard Summary Cards -->
+                    <HBox spacing="20">
+                        <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                            <Label text="Total Medicines" styleClass="card-title"/>
+                            <Label fx:id="totalMedsLabel" text="0" styleClass="card-value"/>
+                        </VBox>
+                        <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                            <Label text="Low Stock Items" styleClass="card-title"/>
+                            <Label fx:id="lowStockLabel" text="0" styleClass="card-value" style="-fx-text-fill: #e67e22;"/>
+                        </VBox>
+                        <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                            <Label text="Expired Medicines" styleClass="card-title"/>
+                            <Label fx:id="expiredMedsLabel" text="0" styleClass="card-value" style="-fx-text-fill: #e74c3c;"/>
+                        </VBox>
+                        <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                            <Label text="Total Sales (Today)" styleClass="card-title"/>
+                            <Label fx:id="totalSalesLabel" text="ETB 0.00" styleClass="card-value" style="-fx-text-fill: #2ecc71;"/>
+                        </VBox>
+                    </HBox>
+                    <!-- Charts -->
+                    <HBox spacing="20" VBox.vgrow="ALWAYS">
+                        <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                            <Label text="Sales Trend (Last 7 Days)" styleClass="section-title"/>
+                            <LineChart fx:id="salesTrendChart" animated="true">
+                                <xAxis><CategoryAxis/></xAxis>
+                                <yAxis><NumberAxis/></yAxis>
+                            </LineChart>
+                        </VBox>
+                        <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                            <Label text="Revenue by Pharmacist" styleClass="section-title"/>
+                             <BarChart fx:id="pharmacistSalesChart" animated="true">
+                                <xAxis><CategoryAxis/></xAxis>
+                                <yAxis><NumberAxis/></yAxis>
+                            </BarChart>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </Tab>
+
+            <!-- Medicines Inventory Tab -->
+            <Tab text="Medicines Inventory">
+                <VBox spacing="20" style="-fx-padding: 20;">
+                    <VBox styleClass="card" spacing="15">
+                        <Label text="Manage Medicine" styleClass="section-title"/>
+                        <GridPane styleClass="form-grid">
+                            <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                            <TextField fx:id="medNameField" promptText="Medicine Name" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"/>
+
+                            <Label text="Company:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                            <TextField fx:id="medCompanyField" promptText="Manufacturing Company" GridPane.rowIndex="0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS"/>
+
+                            <Label text="Batch No:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                            <TextField fx:id="medBatchField" promptText="Batch Number" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                            <Label text="Quantity:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                            <TextField fx:id="medQtyField" promptText="e.g., 100" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                            <Label text="Price (ETB):" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                            <TextField fx:id="medPriceField" promptText="e.g., 10.50" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                            <Label text="Expiry Date:" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                            <DatePicker fx:id="medExpiryField" promptText="Select Expiry Date" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                        </GridPane>
+                        <HBox spacing="15" alignment="CENTER_LEFT">
+                            <CheckBox fx:id="medPrescriptionCheck" text="Requires Prescription"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <HBox spacing="10" alignment="CENTER_RIGHT">
+                                <Button text="Clear" onAction="#onClearMedicineForm" styleClass="button-secondary"/>
+                                <Button text="Delete" onAction="#onDeleteMedicineClick" styleClass="button-danger"/>
+                                <Button text="Update" onAction="#onUpdateMedicineClick"/>
+                                <Button text="Add New" onAction="#onAddMedicineClick" styleClass="button-success"/>
+                            </HBox>
+                        </HBox>
+                        <Label fx:id="medFormErrorLabel" styleClass="error-label" managed="false" visible="false"/>
+                    </VBox>
+                    <TextField fx:id="searchMedField" promptText="Search by Name, Company, or Batch Number..." onKeyReleased="#onSearchMedicine"/>
+                    <TableView fx:id="medicineTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="medIdCol" text="ID" prefWidth="50"/>
+                            <TableColumn fx:id="medNameCol" text="Name" prefWidth="200"/>
+                            <TableColumn fx:id="medCompanyCol" text="Company" prefWidth="150"/>
+                            <TableColumn fx:id="medBatchCol" text="Batch No." prefWidth="100"/>
+                            <TableColumn fx:id="medQtyCol" text="Qty" prefWidth="70"/>
+                            <TableColumn fx:id="medPriceCol" text="Price (ETB)" prefWidth="100"/>
+                            <TableColumn fx:id="medExpiryCol" text="Expiry Date" prefWidth="120"/>
+                            <TableColumn fx:id="medRxCol" text="Rx Req." prefWidth="80"/>
+                        </columns>
+                        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- Sales & Performance Tab -->
+            <Tab text="Sales &amp; Performance">
+                <VBox spacing="20" style="-fx-padding: 20;">
+                    <HBox spacing="20" VBox.vgrow="ALWAYS">
+                        <VBox styleClass="card" spacing="15" HBox.hgrow="ALWAYS">
+                            <Label text="Pharmacist Performance" styleClass="section-title"/>
+                            <TableView fx:id="pharmacistPerformanceTable" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="perfPharmacistCol" text="Pharmacist"/>
+                                    <TableColumn fx:id="perfTotalSalesCol" text="Total Sales (ETB)"/>
+                                    <TableColumn fx:id="perfNumSalesCol" text="Number of Sales"/>
+                                </columns>
+                                <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                            </TableView>
+                        </VBox>
+                        <VBox styleClass="card" spacing="15" HBox.hgrow="ALWAYS">
+                            <Label text="Full Sales Report" styleClass="section-title"/>
+                            <TableView fx:id="fullSaleReportTable" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="reportSaleIdCol" text="Sale ID"/>
+                                    <TableColumn fx:id="reportMedNameCol" text="Medicine"/>
+                                    <TableColumn fx:id="reportCustNameCol" text="Customer"/>
+                                    <TableColumn fx:id="reportQtyCol" text="Qty"/>
+                                    <TableColumn fx:id="reportPriceCol" text="Total Price (ETB)"/>
+                                    <TableColumn fx:id="reportDateCol" text="Date"/>
+                                    <TableColumn fx:id="reportPharmacistCol" text="Pharmacist"/>
+                                    <TableColumn fx:id="reportDoctorCol" text="Doctor"/>
+                                </columns>
+                                <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                            </TableView>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </Tab>
+
+            <!-- Suppliers & Users Tab -->
+            <Tab text="Suppliers &amp; Users">
+                 <VBox spacing="20" style="-fx-padding: 20;">
+                    <HBox spacing="20" VBox.vgrow="ALWAYS">
+                        <VBox styleClass="card" spacing="15" HBox.hgrow="ALWAYS">
+                            <Label text="Manage Suppliers" styleClass="section-title"/>
+                            <GridPane styleClass="form-grid">
+                                <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                <TextField fx:id="supNameField" promptText="Supplier Name" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                <Label text="Contact:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                <TextField fx:id="supContactField" promptText="e.g., 0912345678" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                <Label text="License No:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                <TextField fx:id="supLicenseField" promptText="License Number" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                <Label text="Address:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                                <TextField fx:id="supAddressField" promptText="Supplier Address" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                            </GridPane>
+                            <Label fx:id="supFormErrorLabel" styleClass="error-label" managed="false" visible="false"/>
+                            <Button text="Add Supplier" onAction="#onAddSupplierClick" styleClass="button-success" maxWidth="Infinity"/>
+                            <TableView fx:id="supplierTable" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="supIdCol" text="ID"/>
+                                    <TableColumn fx:id="supNameCol" text="Name"/>
+                                    <TableColumn fx:id="supContactCol" text="Contact"/>
+                                    <TableColumn fx:id="supAddressCol" text="Address"/>
+                                    <TableColumn fx:id="supLicenseCol" text="License No."/>
+                                </columns>
+                                <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                            </TableView>
+                        </VBox>
+                        <VBox styleClass="card" spacing="15" HBox.hgrow="ALWAYS">
+                            <Label text="Manage Users" styleClass="section-title"/>
+                            <Label text="Register New Pharmacist"/>
+                            <GridPane styleClass="form-grid">
+                                <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                <TextField fx:id="regUsernameField" promptText="Username" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                <PasswordField fx:id="regPasswordField" promptText="Password" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                            </GridPane>
+                            <Label fx:id="regMessageLabel" styleClass="error-label" managed="false" visible="false"/>
+                            <Button text="Register Pharmacist" onAction="#onRegisterUserClick" styleClass="button-success" maxWidth="Infinity"/>
+                        </VBox>
+                    </HBox>
+                 </VBox>
+            </Tab>
+        </tabs>
+    </TabPane>
+</VBox>
