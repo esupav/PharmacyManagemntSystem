@@ -1,5 +1,3 @@
-
-
 # 🏥 Pharmacy Management System
 
 A professional, secure, and regulation-compliant desktop application designed for modern pharmacies. Built with **JavaFX**, **MySQL**, and **Maven**, this system streamlines inventory management, sales, and reporting while strictly adhering to health organization standards.
@@ -55,7 +53,7 @@ A professional, secure, and regulation-compliant desktop application designed fo
 2.  Create the database:
     sql
     CREATE DATABASE pharmacy_db;
-    
+
 3.  The application will **automatically create all necessary tables** and the default admin account upon the first run.
 
 ### Running the Application
@@ -65,7 +63,7 @@ A professional, secure, and regulation-compliant desktop application designed fo
     java
     private static final String USER = "root";
     private static final String PASSWORD = "@Etoma1996";
-    
+
 4.  Run the `HelloApplication.java` file.
 
 

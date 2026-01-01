@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox spacing="20" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.pharmacymanagementsystem.DailyReportController" style="-fx-padding: 20;">
+    <Label text="My Daily Report" styleClass="header-title"/>
+
+    <HBox spacing="20">
+        <VBox styleClass="card" HBox.hgrow="ALWAYS">
+            <Label text="Total Sales" styleClass="card-title"/>
+            <Label fx:id="totalSalesLabel" text="0.00 ETB" styleClass="card-value"/>
+        </VBox>
+        <VBox styleClass="card" HBox.hgrow="ALWAYS">
+            <Label text="Number of Sales" styleClass="card-title"/>
+            <Label fx:id="numSalesLabel" text="0" styleClass="card-value"/>
+        </VBox>
+    </HBox>
+
+    <VBox styleClass="card" spacing="15" VBox.vgrow="ALWAYS">
+        <Label text="Today's Sales" styleClass="section-title"/>
+        <TableView fx:id="dailySalesReportTable" VBox.vgrow="ALWAYS">
+            <!-- Columns will be added dynamically -->
+        </TableView>
+    </VBox>
+</VBox>
