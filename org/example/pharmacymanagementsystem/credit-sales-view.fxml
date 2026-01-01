@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox spacing="20" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.pharmacymanagementsystem.CreditSalesController" style="-fx-padding: 20;">
+    <Label text="Credit Sales Management" styleClass="header-title"/>
+
+    <VBox styleClass="card" spacing="15" VBox.vgrow="ALWAYS">
+        <Label text="Outstanding Credit Sales" styleClass="section-title"/>
+        <TextField fx:id="searchCreditSalesField" promptText="Search by Customer Name or Sale ID..."/>
+        <TableView fx:id="creditSalesTable" VBox.vgrow="ALWAYS">
+            <!-- Columns will be added dynamically -->
+        </TableView>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Label text="Selected Sale Total:"/>
+            <Label fx:id="selectedSaleTotalLabel" style="-fx-font-weight: bold;"/>
+            <Label text="Amount to Pay:"/>
+            <TextField fx:id="paymentAmountField" promptText="0.00"/>
+            <Button text="Make Payment" onAction="#makePayment" styleClass="button-success"/>
+        </HBox>
+        <Label fx:id="paymentErrorLabel" styleClass="error-label" managed="false" visible="false"/>
+    </VBox>
+</VBox>

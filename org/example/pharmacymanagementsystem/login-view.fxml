@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.pharmacymanagementsystem.LoginController"
+           stylesheets="@styles.css" styleClass="login-container">
+
+    <VBox alignment="CENTER" spacing="20" styleClass="login-form-container" maxWidth="400">
+        <Label text="User Login" styleClass="login-title"/>
+
+        <VBox spacing="10" maxWidth="300">
+            <TextField fx:id="usernameField" promptText="Username"/>
+            <PasswordField fx:id="passwordField" promptText="Password"/>
+        </VBox>
+
+        <Label fx:id="errorLabel" textFill="RED"/>
+
+        <VBox spacing="10" alignment="CENTER">
+            <Button text="Login" onAction="#onLoginClick" defaultButton="true" styleClass="login-button" maxWidth="Infinity"/>
+            <Button text="Back to Welcome" onAction="#onBackClick" cancelButton="true" styleClass="secondary-button" maxWidth="Infinity"/>
+        </VBox>
+    </VBox>
+
+</StackPane>
